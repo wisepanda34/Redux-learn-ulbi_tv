@@ -1,7 +1,8 @@
-import { legacy_createStore as createStore, combineReducers } from 'redux';
+import { legacy_createStore as createStore, combineReducers, applyMiddleware } from 'redux';
 import { cashReducer } from './cashReducer'
 import { customerReducer } from './customerReducer';
-// import { composeWithDevTools } from 'redux-devtools-extension';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import thunk from 'redux-thunk';
 
 
 const rootReducer = combineReducers({
@@ -10,5 +11,6 @@ const rootReducer = combineReducers({
 })
 
 //глобальное хранилище создаем путем вызова функции для его создания, а также добавляем логику (reducer), которая будет изменять состояние, вторым параметром передаем 
-export const store = createStore(rootReducer);
+//redux-thunk это Middleware, кот. позволяет внутри разных сторонних функций использовать dispatch
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 

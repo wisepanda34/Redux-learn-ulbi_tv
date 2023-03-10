@@ -23,8 +23,14 @@ button{
 }
 .app_customers{
   margin-top: 20px;
-  padding: 10px;
+ 
+}
+.app_customer{
   border: 1px solid rgb(119, 161, 249);
+  cursor: pointer;
+  margin: 5px 0;
+  padding: 10px;
+
 }
 
 .App-logo {

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import './App.css';
 import { addCustomerAction, removeCustomerAction } from './store/customerReducer';
+import { fetchCustomers } from './asyncAction/customers';
 
 function App() {
   //состояние для поля input 
@@ -55,7 +56,7 @@ function App() {
         <button onClick={() => addCash(num)}>ADD CASH</button>
         <button onClick={() => getCash(num)}>GET CASH</button>
         <button onClick={() => addCustomer(prompt())}>ADD CLIENT</button>
-        {/* <button onClick={() => removeCustomer()}>GET CLIENT</button> */}
+        <button onClick={() => dispatch(fetchCustomers())}>GET CLIENTS FROM DATA</button>
         <input className='app_input' type="text" placeholder='put your cash' value={num} onChange={handleValue} />
         <div className='app_cash'>Balance: {cash.cash} </div>
       </div>
@@ -63,7 +64,7 @@ function App() {
         customers.length > 0 ?
           <div className='app_customers'>
             {customers.map(customer =>
-              <div key={customer.id} onClick={() => removeCustomer(customer)}> {customer.name}</div>
+              <div className='app_customer' key={customer.id} onClick={() => removeCustomer(customer)}> {customer.name}</div>
             )}
           </div>
           :
